@@ -2,7 +2,7 @@
 Manages Global Config files for npm-modules
 
 ## Description
-This simple module writes and reads json-files to the users Home-Directory, so that data can be saved globally.
+This simple module reads from and writes json files to the users home directory, so that data can be saved globally. 
 
 ## Usage
 
