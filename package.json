@@ -1,0 +1,45 @@
+{
+  "name": "GlobalConfigManager",
+  "version": "0.0.1",
+  "description": "Manages Global Config files for npm-modules",
+  "main": "index.js",
+  "scripts": {
+    "test": "JUNIT_REPORT_PATH=build/mocha.xml JUNIT_REPORT_STACK=1 mocha --recursive test -R mocha-jenkins-reporter",
+    "cover": "istanbul cover --dir build --include-all-sources true _mocha -- --recursive test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Agreon/GlobalConfigManager.git"
+  },
+  "bin": {
+    "sgcloud": "./bin/sgcloud"
+  },
+  "keywords": [
+    "shopgate",
+    "cloud",
+    "sdk"
+  ],
+  "contributors": [
+    "Daniel Huth <daniel.huth1996@gmail.com> (https://github.com/agreon)"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Agreon/GlobalConfigManager/issues"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ]
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "mocha-jenkins-reporter": "^0.3.9"
+  },
+  "dependencies": {
+    "fs-extra": "^4.0.2"
+  }
+}
