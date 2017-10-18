@@ -1,4 +1,5 @@
 const GlobalConfigManager = require('../dist/GlobalConfigManager')
+const fs = require('fs-extra')
 const assert = require('assert')
 
 describe('GlobalConfigManager', () => {
@@ -6,7 +7,11 @@ describe('GlobalConfigManager', () => {
 
   it('should write a file to the home folder', (done) => {
     manager.set('sg-cloud', 'config.json', {value: 1}, () => {
-      done()
+      fs.readFile(`${process.env['HOME']}/.sg-cloud/config.json`, 'UTF-8', (err, data) => {
+        assert.ifError(err)
+        assert.deepEqual(JSON.parse(data), {value: 1})
+        done()
+      })
     })
   })
 

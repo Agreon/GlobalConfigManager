@@ -1,5 +1,5 @@
 {
-  "name": "GlobalConfigManager",
+  "name": "gcfg",
   "version": "0.0.1",
   "description": "Manages Global Config files for npm-modules",
   "main": "index.js",
@@ -11,14 +11,6 @@
     "type": "git",
     "url": "https://github.com/Agreon/GlobalConfigManager.git"
   },
-  "bin": {
-    "sgcloud": "./bin/sgcloud"
-  },
-  "keywords": [
-    "shopgate",
-    "cloud",
-    "sdk"
-  ],
   "contributors": [
     "Daniel Huth <daniel.huth1996@gmail.com> (https://github.com/agreon)"
   ],
