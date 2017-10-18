@@ -1,6 +1,6 @@
 {
   "name": "gcfg",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Manages Global Config files for npm-modules",
   "main": "index.js",
   "scripts": {

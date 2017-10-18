@@ -1,47 +1,47 @@
+const path = require('path')
 const fs = require('fs-extra')
 
 class GlobalConfigManager {
-  set (applicationId, fileName, content, cb) {
+  /**
+   * 
+   * @param {*} applicationId 
+   * @param {*} fileName 
+   * @param {*} content 
+   * @param {*} cb 
+   */
+  static set (applicationId, fileName, content, cb) {
     const path = this._createPath(applicationId, fileName)
-
-    if (typeof content === 'object') {
-      try {
-        content = JSON.stringify(content)
-      } catch (err) {
-        cb(err)
-      }
-    }
-
-    fs.outputFile(path, content, cb)
-  }
-
-  get (applicationId, fileName, cb) {
-    const path = this._createPath(applicationId, fileName)
-    fs.readFile(path, 'UTF-8', (err, data) => {
-      if (err) return cb(err)
-      cb(null, JSON.parse(data))
-    })
+    fs.outputJson(path, content, cb)
   }
 
   /**
-   * TODO: Check os
+   * 
+   * @param {*} applicationId
+   * @param {*} fileName 
+   * @param {*} cb 
+   */
+  static get (applicationId, fileName, cb) {
+    const path = this._createPath(applicationId, fileName)
+    fs.readJSON(path, 'UTF-8', cb)
+  }
+
+  /**
    * @param {*} applicationId 
    * @param {*} fileName 
    */
-  _createPath (applicationId, fileName) {
-
-    const home = process.env['HOME']
-
-    return `${home}/.${applicationId}/${fileName}`
-
-/*    switch (process.platform) {
-      case 'win32':
-      break
-      case 'linux':
-      break
-      default:
-      break
-    }*/
+  static _createPath (applicationId, fileName) {
+    // Win32
+    if (process.env.APPDATA) {
+      return path.join(process.env.APPDATA, applicationId, fileName)
+    } else
+    // Unix
+    if (process.env.HOME) {
+      return path.join(process.env.HOME, `.${applicationId}`, fileName)
+    } else {
+      console.log('You don\'t have a supported OS')
+      // TODO: Does env.home and appdata exist? => Write in module-dir
+      return path.join(__filename, '../config', applicationId, fileName)
+    }
   }
 }
 
