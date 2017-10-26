@@ -16,13 +16,34 @@ class GlobalConfigManager {
 
   /**
    * 
+   * @param {*} applicationId 
+   * @param {*} fileName 
+   * @param {*} content 
+   */
+  static setSync (applicationId, fileName, content) {
+    const path = this._createPath(applicationId, fileName)
+    fs.outputJsonSync(path, content)
+  }
+
+  /**
+   * 
    * @param {*} applicationId
    * @param {*} fileName 
    * @param {*} cb 
    */
   static get (applicationId, fileName, cb) {
     const path = this._createPath(applicationId, fileName)
-    fs.readJSON(path, 'UTF-8', cb)
+    fs.readJson(path, 'UTF-8', cb)
+  }
+
+  /**
+   * 
+   * @param {*} applicationId 
+   * @param {*} fileName 
+   */
+  static getSync (applicationId, fileName) {
+    const path = this._createPath(applicationId, fileName)
+    fs.readJsonSync(path, 'UTF-8')
   }
 
   /**
